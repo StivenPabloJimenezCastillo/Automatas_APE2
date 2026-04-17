@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interfaz de Lenguajes - Flask</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Operaciones de Lenguajes</h1>
+    <p class="subtitle">Ingresa listas separadas por comas. Ejemplo: a,b,c</p>
+
+    <form method="post" id="operations-form">
+      <h2>Selecciona un metodo</h2>
+      <label for="operation">Metodo</label>
+      <select name="operation" id="operation">
+        <option value="generar" {% if form_data.get('operation', 'generar') == 'generar' %}selected{% endif %}>1) Generar Cadenas</option>
+        <option value="pertenece" {% if form_data.get('operation') == 'pertenece' %}selected{% endif %}>2) Pertenencia</option>
+        <option value="union" {% if form_data.get('operation') == 'union' %}selected{% endif %}>3) Union</option>
+        <option value="concatenacion" {% if form_data.get('operation') == 'concatenacion' %}selected{% endif %}>4) Concatenacion</option>
+        <option value="kleene_star" {% if form_data.get('operation') == 'kleene_star' %}selected{% endif %}>5) Kleene Star</option>
+        <option value="kleene_plus" {% if form_data.get('operation') == 'kleene_plus' %}selected{% endif %}>6) Kleene Plus</option>
+        <option value="crecimiento" {% if form_data.get('operation') == 'crecimiento' %}selected{% endif %}>7) Crecimiento</option>
+      </select>
+
+      <section class="fields">
+        <div class="method-fields" data-op="generar">
+          <label>Alfabeto</label>
+          <input name="alfabeto" value="{{ form_data.get('alfabeto', '') }}" placeholder="a,b,c">
+          <label>Longitud maxima</label>
+          <input name="max_len" type="number" min="0" value="{{ form_data.get('max_len', '2') }}">
+        </div>
+
+        <div class="method-fields" data-op="pertenece">
+          <label>Cadena</label>
+          <input name="cadena" value="{{ form_data.get('cadena', '') }}" placeholder="ab">
+          <label>Lenguaje</label>
+          <input name="lenguaje" value="{{ form_data.get('lenguaje', '') }}" placeholder="a,b,ab,abc">
+        </div>
+
+        <div class="method-fields" data-op="union">
+          <label>L1</label>
+          <input name="l1_union" value="{{ form_data.get('l1_union', '') }}" placeholder="a,b,c">
+          <label>L2</label>
+          <input name="l2_union" value="{{ form_data.get('l2_union', '') }}" placeholder="c,d,e">
+        </div>
+
+        <div class="method-fields" data-op="concatenacion">
+          <label>L1</label>
+          <input name="l1_concat" value="{{ form_data.get('l1_concat', '') }}" placeholder="a,b">
+          <label>L2</label>
+          <input name="l2_concat" value="{{ form_data.get('l2_concat', '') }}" placeholder="c,d">
+        </div>
+
+        <div class="method-fields" data-op="kleene_star">
+          <label>Lenguaje</label>
+          <input name="lenguaje_ks" value="{{ form_data.get('lenguaje_ks', '') }}" placeholder="a,b">
+          <label>Max iteraciones</label>
+          <input name="max_iter_ks" type="number" min="0" value="{{ form_data.get('max_iter_ks', '2') }}">
+        </div>
+
+        <div class="method-fields" data-op="kleene_plus">
+          <label>Lenguaje</label>
+          <input name="lenguaje_kp" value="{{ form_data.get('lenguaje_kp', '') }}" placeholder="a,b">
+          <label>Max iteraciones</label>
+          <input name="max_iter_kp" type="number" min="1" value="{{ form_data.get('max_iter_kp', '2') }}">
+        </div>
+
+        <div class="method-fields" data-op="crecimiento">
+          <label>Lenguaje</label>
+          <input name="lenguaje_crecimiento" value="{{ form_data.get('lenguaje_crecimiento', '') }}" placeholder="a,b,c">
+        </div>
+      </section>
+
+      <button type="submit">Ejecutar</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if resultado is not none and not error %}
+      <section class="result">
+        <h2>Resultado: {{ titulo_resultado }}</h2>
+        <pre>{{ resultado_texto }}</pre>
+      </section>
+    {% endif %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

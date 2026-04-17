@@ -1,0 +1,127 @@
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --line: #d8dee8;
+  --text: #1f2937;
+  --muted: #5b6472;
+  --accent: #0f766e;
+  --accent-2: #115e59;
+  --danger: #b42318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  background: linear-gradient(130deg, #e8eef8 0%, #f8fafc 48%, #e8f7f5 100%);
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 24px auto 40px;
+  padding: 0 16px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+form {
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+h2 {
+  margin: 2px 0 10px;
+  font-size: 1.05rem;
+}
+
+label {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+input,
+select {
+  width: 100%;
+  margin-top: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: #fff;
+}
+
+.fields {
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.method-fields {
+  display: none;
+}
+
+.method-fields.active {
+  display: block;
+}
+
+button {
+  margin-top: 12px;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: var(--accent);
+}
+
+button:hover {
+  background: var(--accent-2);
+}
+
+.result {
+  margin-top: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.error {
+  margin-top: 16px;
+  background: #fef3f2;
+  color: var(--danger);
+  border: 1px solid #fecdca;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+pre {
+  margin: 8px 0 0;
+  overflow: auto;
+  background: #f8fafc;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.87rem;
+}
